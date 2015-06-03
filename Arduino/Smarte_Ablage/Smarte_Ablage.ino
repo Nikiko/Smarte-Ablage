@@ -9,14 +9,9 @@ void setup() {
   pinMode(config.LED.RED_PIN, OUTPUT);
   pinMode(config.BUTTON.PIN, INPUT);
   pinMode(config.DEPOT_SPEAKER_PIN, OUTPUT);
-  Serial.begin(1200);
+  Serial.begin(9600);
 }
 
 void loop() {
   state();
-  // Drucksensordaten
-//  Serial.print("Schluesselmindestgewicht: ");
-//  Serial.print(config.PRESSURE.KEY_WEIGHT );
-//  Serial.print(", Drucksensor: ");
-//  Serial.println(analogRead(config.PRESSURE.PIN));
 }

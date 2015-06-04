@@ -41,7 +41,7 @@ void serialEvent (Serial port) {
     //println(uno_val2);
     //if((int)uno_val != 255)
     //println(str(uno_val) + " " + str((int)uno_val) );
-    if(uno_val2 == 65){
+    if ((uno_val2 == 65) || (uno_val2 == 66)) {
       uno_val = uno_val2;
       port_bean.write(uno_val);
       if((int)uno_val != 0) {

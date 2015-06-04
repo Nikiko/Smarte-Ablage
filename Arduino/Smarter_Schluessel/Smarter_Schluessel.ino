@@ -14,7 +14,8 @@ void loop() {
   //Serial.println((int)processing_val);
   if(alarm_start == (unsigned char)'A') {
     alarm_stop = -1;
-    while (alarm_stop != (unsigned char)'A') {
+    // Spiele Ton ab solange kein Stopsignal ber ein zweiten Tastendruck oder gesendet wurde oder der Schluessel auf die Ablage gelegt wurde
+    while ((alarm_stop != (unsigned char)'A') and (alarm_stop != (unsigned char)'B')) {
       tone(5, 2000, 300);
       delay(600);
       alarm_stop = Serial.read();

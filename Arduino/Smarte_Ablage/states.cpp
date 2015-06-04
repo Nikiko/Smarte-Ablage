@@ -9,6 +9,7 @@ extern Config config;
 
 functionType state = initial;
 bool ir_alarm = false;
+bool stop_alarm = false;
 
 void initial() {
   // LED gruen leuchten lassen
@@ -37,6 +38,8 @@ void key_apart() {
     analogWrite(config.LED.GREEN_PIN, 255);
     // Depot Piepton deaktivieren
     noTone(config.DEPOT_SPEAKER_PIN);
+    // Schluesselalarm deaktivieren
+    Serial.write((unsigned char)'B');
     config.time[0] = 0; 
     state = key_on_depot;
   }

@@ -1,7 +1,8 @@
-unsigned char processing_val = -1;
+unsigned char alarm_start = -1;
+unsigned char alarm_stop = -1;
+
 
 void setup() {
-  // put your setup code here, to run once:
   Bean.setLed(0,0,0);
   Serial.begin(9600);
   Serial.setTimeout(5);
@@ -9,24 +10,22 @@ void setup() {
 }
 
 void loop() { 
-  processing_val = Serial.read();
-  Serial.println((int)processing_val);
-  if(processing_val == (unsigned char)'A') {
-    Serial.println("PIIIIIIIEEEEEEP");
-    tone(5, 2000, 500);
-    delay(500);
+  alarm_start = Serial.read();
+  //Serial.println((int)processing_val);
+  if(alarm_start == (unsigned char)'A') {
+    alarm_stop = -1;
+    while (alarm_stop != (unsigned char)'A') {
+      tone(5, 2000, 300);
+      delay(600);
+      alarm_stop = Serial.read();
+    }
   }
-  //Serial.println(processing_val);
  
- 
- 
- // Leuchte zur Kontrolle
+ // Leuchte Rot bei Verbindungsabbruch
  bool connected = Bean.getConnectionState();
  if ( connected ) {
-   Bean.setLed(0,255,0);
+   Bean.setLed(0,0,0);
  } else {
    Bean.setLed(130,0,0);
  }
- 
- //delay(200);
 }

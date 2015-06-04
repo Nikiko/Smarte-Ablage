@@ -29,7 +29,6 @@ void setup() {
   port_bean.clear();
   println(Serial.list());
 }
-char a = 1;
 
 
 void draw() {
@@ -39,9 +38,9 @@ void draw() {
 void serialEvent (Serial port) {
   if (port_uno.available() > 0) {
     char uno_val2 = port.readChar();
-    println(uno_val2);
+    //println(uno_val2);
     //if((int)uno_val != 255)
-      //println(str(uno_val) + " " + str((int)uno_val) );
+    //println(str(uno_val) + " " + str((int)uno_val) );
     if(uno_val2 == 65){
       uno_val = uno_val2;
       port_bean.write(uno_val);

@@ -11,7 +11,7 @@ void setup() {
   int port_uno_id = 0;
   int port_bean_id = 0;
   for (String s: Serial.list()) {
-    if ((s.substring(s.length()-12).equals("usbmodem1421")) || (s.substring(s.length()-12).equals("usbmodem1421"))) {
+    if ((s.substring(s.length()-12).equals("usbmodem1421")) || (s.substring(s.length()-12).equals("usbmodem1411"))) {
       break;
     }
     ++port_uno_id;  

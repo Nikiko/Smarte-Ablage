@@ -5,7 +5,7 @@ unsigned char alarm_stop = -1;
 void setup() {
   Bean.setLed(0,0,0);
   Serial.begin(9600);
-  Serial.setTimeout(5);
+  Serial.setTimeout(500);
   //Bean.enableAdvertising( true, 0xFFFFFFFF );
 }
 
@@ -16,8 +16,8 @@ void loop() {
     alarm_stop = -1;
     // Spiele Ton ab solange kein Stopsignal ber ein zweiten Tastendruck oder gesendet wurde oder der Schluessel auf die Ablage gelegt wurde
     while ((alarm_stop != (unsigned char)'A') and (alarm_stop != (unsigned char)'B')) {
-      tone(5, 2000, 300);
-      delay(600);
+      tone(5, 1200, 300);
+      delay(500);
       alarm_stop = Serial.read();
     }
   }

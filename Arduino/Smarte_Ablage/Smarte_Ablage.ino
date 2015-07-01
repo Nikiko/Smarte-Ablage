@@ -14,4 +14,9 @@ void setup() {
 
 void loop() {
   state();
+  //Serial.println(analogRead(config.PRESSURE.PIN));
+  //Serial.println(analogRead(config.INFRARED_1.PIN));
+  //if ((analogRead(config.INFRARED_1.PIN) > config.INFRARED_1.ACTIVATION_DISTANCE)){
+  //Serial.println(analogRead(config.INFRARED_1.PIN));
+  //}
 }

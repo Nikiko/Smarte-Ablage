@@ -1,5 +1,6 @@
 import processing.serial.*;
 int i = 1;
+boolean bean_aviable = true;
 
 // Für Statistikausgabe
 int search_count = 0;
@@ -7,7 +8,7 @@ int search_average = 0;
 int smile_width = 0;
 float mouth_edges = 0;       
 float mouth_middle = 0;    
-double noob_scala = 0;      
+double noob_scala = 100;      
 float noob_percent = 0;
 
 int key_deposit_remember = 0;
@@ -41,10 +42,13 @@ void setup() {
     ++port_bean_id;  
   }
   port_uno = new Serial (this, Serial.list() [port_uno_id], 9600);
-  port_bean = new Serial (this, Serial.list() [port_bean_id], 9600); 
-   
   port_uno.clear();
-  port_bean.clear();
+  
+  if (bean_aviable == true){
+    port_bean = new Serial (this, Serial.list() [port_bean_id], 9600);
+    port_bean.clear();
+  }
+  
   println(Serial.list());
   smooth();
 }
@@ -55,12 +59,12 @@ void draw() {
   textSize(46);
   fill(255);
   
-  text("Smarte Ablage", displayWidth/1.6, (displayHeight/2)-100); 
+  text("Smarte Ablage", displayWidth/1.8, (displayHeight/2)-100); 
   
-  textSize(21);
-  text("Vergessen Schlüssel abzulegen: " + key_deposit_forgot, displayWidth/1.6, displayHeight/2); 
-  text("Schlüssel ordentlich abgelegt: " + key_deposit_remember, displayWidth/1.6, displayHeight/2+50); 
-  text("Erinnerungsrate: " + (int)noob_scala + "%", displayWidth/1.6, displayHeight/2+100); 
+  textSize(30);
+  text("Vergessen Schlüssel abzulegen: " + key_deposit_forgot, displayWidth/1.8, displayHeight/2); 
+  text("Schlüssel ordentlich abgelegt: " + key_deposit_remember, displayWidth/1.8, displayHeight/2+50); 
+  text("Erinnerungsrate: " + (int)noob_scala + "%", displayWidth/1.8, displayHeight/2+100); 
   ellipse(displayWidth/3, displayHeight/2, displayWidth/3, displayWidth/3);
   
   // Mundwinkel zeichnen die Mundwinkel passen sich dynamisch an
@@ -87,7 +91,9 @@ void serialEvent (Serial port) {
       ++i;
     }
     if ((serial_val == 65) || (serial_val == 66)) {
-      port_bean.write(serial_val);
+      if (bean_aviable == true){
+        port_bean.write(serial_val);
+      }
     }
     if (serial_val == 84) {
       ++key_deposit_forgot;

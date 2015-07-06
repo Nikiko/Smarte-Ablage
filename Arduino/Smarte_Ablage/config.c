@@ -31,7 +31,7 @@ Config config = {
   
   .PRESSURE = {
   .PIN = 2,
-  .KEY_WEIGHT = 700                   // Mindestgewicht ab wann die Ablage den Schluessel erkennt
+  .KEY_WEIGHT = 750                   // Mindestgewicht ab wann die Ablage den Schluessel erkennt
   }
 };
 

@@ -19,4 +19,5 @@ void loop() {
   //if ((analogRead(config.INFRARED_1.PIN) > config.INFRARED_1.ACTIVATION_DISTANCE)){
   //Serial.println(analogRead(config.INFRARED_1.PIN));
   //}
+ 
 }

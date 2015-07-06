@@ -24,6 +24,7 @@ void key_on_depot(){
   // Liegt Schluessel nicht mehr auf der Ablage?
   if (analogRead(config.PRESSURE.PIN) < config.PRESSURE.KEY_WEIGHT) {
     // LED rot leuchten lassen
+    delay(500);
     analogWrite(config.LED.RED_PIN, 130);
     analogWrite(config.LED.GREEN_PIN, 0);
     stop_alarm2 = false;
@@ -57,23 +58,19 @@ void key_apart() {
     noTone(config.DEPOT_SPEAKER_PIN);
     // Schluesselalarm deaktivieren
     if (stop_alarm2 == false){
+      delay(10);
       Serial.write((unsigned char)'B');
       stop_alarm2 = true;
     }
     config.time[0] = 0; 
     state = key_on_depot;
   }
-  
-  
-  
-  
   // Sind beide IR Sensoren gleichzeitig aktiviert worden?
   else if ((analogRead(config.INFRARED_1.PIN) > config.INFRARED_1.ACTIVATION_DISTANCE) &&
   (analogRead(config.INFRARED_2.PIN) > config.INFRARED_2.ACTIVATION_DISTANCE)) { 
     noTone(config.DEPOT_SPEAKER_PIN);
     ir_alarm = true;  //Verhindere, dass Alarmsignal ertoent
   }
-
   // Wurde der zweite IR Sensor aktiviert waehrend der erste noch auf aktiv gesetzt (ACTIVATION_DURATION noch nicht abgelaufen) war?
   else if ((analogRead(config.INFRARED_2.PIN) > config.INFRARED_2.ACTIVATION_DISTANCE) && 
    ((millis() - config.time[0]) < config.INFRARED_1.ACTIVATION_DURATION) &&

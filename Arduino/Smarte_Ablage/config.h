@@ -41,7 +41,7 @@ typedef struct Config {
   const Infrared_2 INFRARED_2;
   const Button BUTTON;
   const Pressure PRESSURE;
-  unsigned long time[3];                  // Timer 
+  unsigned long time[5];                  // Timer 
   const int PLACE_KEY_ON_DEPOT_TIME;
 } Config; 
 
